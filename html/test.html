@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var player_info = 'aaa';
+    var socket = io.connect('http://localhost:8765/yhwh');
+
+    socket.on('connected', function (data) {
+        console.log(data);
+        socket.emit('submitPlayerInfo', player_info);
+    });
+
+    socket.on('player_count', function (data) {
+        console.log(data)
+    });
+
+    socket.on('roomInfo', function (room_no) {
+        console.log(room_no);
+    });
+
+    socket.on('hallError', function (error) {
+        console.log(error)
+    });
+
+    socket.on('joinRoomSuccess', function (data) {
+        console.log(data)
+    });
+
+    function getPlayerCount() {
+        socket.emit('getPlayerCount');
+        return true;
+    }
+
+    function createRoom() {
+        socket.emit('createRoom', {roundNumber: 4});
+        return true;
+    }
+
+    function joinRoom(room_no) {
+        socket.emit('joinRoom', room_no);
+        return true;
+    }
+
+    function setReadyState(flag) {
+        socket.emit('setReadyState', flag);
+        return true;
+    }
+
+</script>
+</body>
+</html>

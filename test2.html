@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<script>
+    var chat = io.connect('http://localhost:8765/chat')
+        , news = io.connect('http://localhost:8765/news');
+
+    chat.on('connect', function () {
+        chat.emit('hi!');
+    });
+
+    news.on('news', function () {
+        news.emit('woot');
+    });
+</script>
+</body>
+</html>

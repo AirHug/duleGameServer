@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var player_info = 'aaa';
+    var socket = io.connect('http://localhost:8765/yhwh');
+
+    socket.on('welcome', function (data) {
+        console.log(data);
+        socket.emit('submit_info', player_info);
+
+    });
+
+
+</script>
+</body>
+</html>
